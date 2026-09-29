@@ -1,4 +1,3 @@
-load("@rules_python//python:defs.bzl", "py_binary")
 load("@rules_rust//rust:defs.bzl", "rust_binary")
 
 package(default_visibility = ["//visibility:public"])
@@ -6,18 +5,11 @@ package(default_visibility = ["//visibility:public"])
 rust_binary(
     name = "reads",
     srcs = ["main.rs"],
-    data = [":data.toml"],
+    data = [":data.json"],
     deps = [
         # "@crates//:clap",
         # "@crates//:serde",
         # "@crates//:toml",
         # "@crates//:toml_edit",
     ],
-)
-
-py_binary(
-    name = "migrate",
-    srcs = ["migrate.py"],
-    data = ["data.toml"],
-    main = "migrate.py",
 )

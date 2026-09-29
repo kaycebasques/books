@@ -3,11 +3,8 @@ load("@rules_rust//rust:defs.bzl", "rust_binary")
 
 package(default_visibility = ["//visibility:public"])
 
-# why are we exporting this?
-exports_files(["data.toml"])
-
 rust_binary(
-    name = "books",
+    name = "reads",
     srcs = ["main.rs"],
     data = [":data.toml"],
     deps = [
@@ -18,10 +15,9 @@ rust_binary(
     ],
 )
 
-# temporary migration script
 py_binary(
-    name = "toml_to_json",
-    srcs = ["toml_to_json.py"],
+    name = "migrate",
+    srcs = ["migrate.py"],
     data = ["data.toml"],
-    main = "toml_to_json.py",
+    main = "migrate.py",
 )
